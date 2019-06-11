@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './ListView.css';
 
 class ListView extends Component {
 	constructor(props) {
@@ -8,7 +9,7 @@ class ListView extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="ListView">
 				<p>ListView</p>
 			</div>
 		);

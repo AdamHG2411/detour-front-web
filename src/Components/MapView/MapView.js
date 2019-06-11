@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './MapView.css';
 
 class MapView extends Component {
 	constructor(props) {
@@ -8,7 +9,7 @@ class MapView extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="MapView">
 				<p>MapView</p>
 			</div>
 		);

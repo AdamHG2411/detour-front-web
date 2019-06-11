@@ -7,7 +7,7 @@
 .App {
 	display: grid;
 	grid-template-rows: 100vh;
-	grid-template-columns: auto auto;
+	grid-template-columns: 250px auto;
 }
 
 .App-Aside {
@@ -57,10 +57,10 @@
 	background-color: #f5934b;
 	color: black;
 	padding: .2em 1em;
-	margin: 10px auto;
+	margin: 20px auto;
 	font-size: 1.2em;
 	font-weight: 800;
 	font-family: 'Lucida Sans';
-	border-radius: 10px;
+	border-radius: 20px;
 	box-shadow: 3px 3px 2px #096e64;
 }
