@@ -11,6 +11,14 @@ class NewMap extends Component {
 			country: 'Country',
 			description: 'Description'
 		};
+		this.handleChange = this.handleChange.bind(this);
+	}
+
+	handleChange(evt) {
+		evt.preventDefault();
+		this.setState({
+			[evt.target.name]: evt.target.value
+		});
 	}
 
 	render() {
@@ -24,13 +32,13 @@ class NewMap extends Component {
 					<form className="NewMap-Form">
 						<h3>New Map</h3>
 						<label>Map Title</label>
-						<input className="NewMap-FormField" type="text" name="title" />
+						<input className="NewMap-FormField" type="text" name="title" onChange={this.handleChange} />
 						<label>City</label>
-						<input className="NewMap-FormField" type="text" name="city" />
+						<input className="NewMap-FormField" type="text" name="city" onChange={this.handleChange} />
 						<label>Country</label>
-						<input className="NewMap-FormField" type="text" name="country" />
+						<input className="NewMap-FormField" type="text" name="country" onChange={this.handleChange} />
 						<label>Description</label>
-						<textarea rows={5} name="description" />
+						<textarea rows={5} name="description" onChange={this.handleChange} />
 						<input className="NewMap-SubmitForm" type="submit" />
 					</form>
 				</div>
