@@ -14,10 +14,11 @@ class App extends Component {
 	}
 
 	render() {
+		console.log('App: render');
 		return (
 			<div className="App">
 				<aside className="App-Aside">
-					<img src={detourLogo} alt="Detour Logo" />
+					<img className="App-Logo" src={detourLogo} alt="Detour Logo" />
 					<nav className="App-Nav">
 						{/* Replace links with variable paths once operational */}
 						<Link className="App-NavLink" to="/new">
@@ -29,10 +30,10 @@ class App extends Component {
 						<Link className="App-NavLink" to="/1/map">
 							Map View
 						</Link>
+						<select className="App-MapSelector">
+							<option className="App-MapOption">Select a map</option>
+						</select>
 					</nav>
-					<select className="App-MapSelector">
-						<option className="App-MapOption">Select a map</option>
-					</select>
 					<button className="App-SignOut">Sign Out</button>
 				</aside>
 				<main className="App-Content">
