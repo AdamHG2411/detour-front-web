@@ -1,3 +1,5 @@
+I'm building this application in a week as the final project for General Assembly's Software Engineering Immersive. My focus this week is on building a high-quality functional app, but I fully intend to add thorough documentation soon.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
