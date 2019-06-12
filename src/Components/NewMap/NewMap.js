@@ -4,21 +4,21 @@ import './NewMap.css';
 class NewMap extends Component {
 	constructor(props) {
 		super(props);
-		console.log(this.props);
-		this.state = {
-			title: 'Title',
-			city: 'City',
-			country: 'Country',
-			description: 'Description'
-		};
-		this.handleChange = this.handleChange.bind(this);
+		this.detailMap = this.detailMap.bind(this);
+		this.submitMap = this.submitMap.bind(this);
 	}
 
-	handleChange(evt) {
+	detailMap(evt) {
 		evt.preventDefault();
-		this.setState({
-			[evt.target.name]: evt.target.value
+		this.props.handleChange({
+			name: evt.target.name,
+			value: evt.target.value
 		});
+	}
+
+	submitMap(evt) {
+		evt.preventDefault();
+		this.props.createMap();
 	}
 
 	render() {
@@ -26,19 +26,19 @@ class NewMap extends Component {
 			<div className="NewMap">
 				<div className="NewMap-Left">
 					<h2>
-						{this.state.title} - {this.state.city}, {this.state.country}
+						{this.props.title} - {this.props.city}, {this.props.country}
 					</h2>
-					<p>{this.state.description}</p>
-					<form className="NewMap-Form">
+					<p>{this.props.description}</p>
+					<form className="NewMap-Form" onSubmit={this.submitMap}>
 						<h3>New Map</h3>
 						<label>Map Title</label>
-						<input className="NewMap-FormField" type="text" name="title" onChange={this.handleChange} />
+						<input className="NewMap-FormField" type="text" name="title" onChange={this.detailMap} />
 						<label>City</label>
-						<input className="NewMap-FormField" type="text" name="city" onChange={this.handleChange} />
+						<input className="NewMap-FormField" type="text" name="city" onChange={this.detailMap} />
 						<label>Country</label>
-						<input className="NewMap-FormField" type="text" name="country" onChange={this.handleChange} />
+						<input className="NewMap-FormField" type="text" name="country" onChange={this.detailMap} />
 						<label>Description</label>
-						<textarea rows={5} name="description" onChange={this.handleChange} />
+						<textarea rows={5} name="description" onChange={this.detailMap} />
 						<input className="NewMap-SubmitForm" type="submit" />
 					</form>
 				</div>

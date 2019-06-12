@@ -12,8 +12,24 @@ class App extends Component {
 		super(props);
 		console.log(this.props);
 		this.state = {
-			selectedCity: ''
+			title: 'Map Title',
+			city: 'City',
+			country: 'Country',
+			description: 'Description'
 		};
+		this.handleChange = this.handleChange.bind(this);
+		this.createMap = this.createMap.bind(this);
+	}
+
+	handleChange(obj) {
+		console.log('App: handleChange');
+		this.setState({
+			[obj.name]: obj.value
+		});
+	}
+
+	createMap() {
+		console.log('App: createMap');
 	}
 
 	render() {
@@ -41,7 +57,12 @@ class App extends Component {
 				</aside>
 				<main className="App-Content">
 					<Router>
-						<NewMap path="/new" />
+						<NewMap
+							path="/new"
+							handleChange={this.handleChange}
+							createMap={this.createMap}
+							{...this.state}
+						/>
 						<MapView path="/:collectionId/map" />
 						<ListView path="/:collectionId/list" />
 					</Router>
