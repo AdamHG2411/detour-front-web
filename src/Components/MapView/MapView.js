@@ -28,14 +28,42 @@ class MapView extends Component {
 				<p>{this.props.description}</p>
 				<button>Share (coming soon)</button>
 				<button>New Detour</button>
-				<ReactMapGL
-					{...this.state.viewport}
-					onViewportChange={(viewport) => this.setState({ viewport })}
-					mapboxApiAccessToken="pk.eyJ1IjoiYWRhbWhnMjQxMSIsImEiOiJjand1c2g4eGQwYmw4NDNuMXEzbGU0ZWVjIn0.cEA146rX1jg_LqwNAwVrdg"
-					mapStyle="mapbox://styles/mapbox/satellite-streets-v10"
-				/>
+				<div className="MapView-MapContainer">
+					<ReactMapGL
+						{...this.state.viewport}
+						onViewportChange={(viewport) => this.setState({ viewport })}
+						mapboxApiAccessToken="pk.eyJ1IjoiYWRhbWhnMjQxMSIsImEiOiJjand1c2g4eGQwYmw4NDNuMXEzbGU0ZWVjIn0.cEA146rX1jg_LqwNAwVrdg"
+						mapStyle="mapbox://styles/mapbox/satellite-streets-v10"
+					/>
+				</div>
 			</div>
 		);
+	}
+
+	componentDidMount() {
+		this.setState({
+			viewport: {
+				width: 400,
+				height: 400,
+				latitude: this.props.map.lat,
+				longitude: this.props.map.lng,
+				zoom: 8
+			}
+		});
+	}
+
+	componentDidUpdate() {
+		if (this.state.viewport.latitude !== this.props.map.lat) {
+			this.setState({
+				viewport: {
+					width: 400,
+					height: 400,
+					latitude: this.props.map.lat,
+					longitude: this.props.map.lng,
+					zoom: 8
+				}
+			});
+		}
 	}
 }
 

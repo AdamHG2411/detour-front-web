@@ -20,6 +20,7 @@ class App extends Component {
 			curTitle: '',
 			curCity: '',
 			curCountry: '',
+			curLatLng: [],
 			curDescription: '',
 			curDetours: [],
 			curId: '',
@@ -49,15 +50,15 @@ class App extends Component {
 			})
 			.then((res) => {
 				console.log(res);
-				let current = res.data;
-				this.setState({
-					curTitle: current.title,
-					curCity: current.city,
-					curCountry: current.country,
-					curDescription: current.description,
-					curDetours: current.detours,
-					curId: current.id
-				});
+				// 	let current = res.data;
+				// 	this.setState({
+				// 		curTitle: current.title,
+				// 		curCity: current.city,
+				// 		curCountry: current.country,
+				// 		curDescription: current.description,
+				// 		curDetours: current.detours,
+				// 		curId: current.id
+				// 	});
 			})
 			.catch((err) => {
 				console.error(err);
@@ -72,14 +73,23 @@ class App extends Component {
 				return map.id === parseInt(evt.target.value, 10);
 			})[0];
 			console.log(selected);
-			this.setState({
-				curTitle: selected.title,
-				curCity: selected.city,
-				curCountry: selected.country,
-				curDescription: selected.description,
-				curDetours: selected.detours,
-				curId: selected.id
-			});
+			let coordinates;
+			axios
+				.get(
+					`https://api.opencagedata.com/geocode/v1/geojson?q=${selected.city}%2C%20${selected.country}&key=1670b9f4cb2a4fc8944aa2118ded097a&language=en&pretty=1`
+				)
+				.then((res) => {
+					coordinates = res.data.features[0].geometry.coordinates;
+					this.setState({
+						curTitle: selected.title,
+						curCity: selected.city,
+						curCountry: selected.country,
+						curDescription: selected.description,
+						curDetours: selected.detours,
+						curId: selected.id,
+						curLatLng: coordinates
+					});
+				});
 		}
 	}
 
@@ -100,6 +110,8 @@ class App extends Component {
 				title: this.state.curTitle,
 				city: this.state.curCity,
 				country: this.state.curCountry,
+				lat: this.state.curLatLng[0],
+				lng: this.state.curLatLng[1],
 				description: this.state.curDescription,
 				detours: this.state.curDetours,
 				id: this.state.curId
