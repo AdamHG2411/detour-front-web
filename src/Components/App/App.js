@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Router } from '@reach/router';
+import axios from 'axios';
 import NewMap from '../NewMap/NewMap.js';
 import MapView from '../MapView/MapView.js';
 import ListView from '../ListView/ListView.js';
@@ -12,13 +13,22 @@ class App extends Component {
 		super(props);
 		console.log(this.props);
 		this.state = {
-			title: 'Map Title',
-			city: 'City',
-			country: 'Country',
-			description: 'Description'
+			newTitle: 'Map Title',
+			newCity: 'City',
+			newCountry: 'Country',
+			newDescription: 'Description',
+			curTitle: '',
+			curCity: '',
+			curCountry: '',
+			curDescription: '',
+			curDetours: [],
+			curId: '',
+			maps: []
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.createMap = this.createMap.bind(this);
+		this.changeMap = this.changeMap.bind(this);
+		this.fetchMaps = this.fetchMaps.bind(this);
 	}
 
 	handleChange(obj) {
@@ -30,10 +40,89 @@ class App extends Component {
 
 	createMap() {
 		console.log('App: createMap');
+		axios
+			.post('http://localhost:8000/maps/', {
+				title: this.state.newTitle,
+				city: this.state.newCity,
+				country: this.state.newCountry,
+				description: this.state.newDescription
+			})
+			.then((res) => {
+				console.log(res);
+				let current = res.data;
+				this.setState({
+					curTitle: current.title,
+					curCity: current.city,
+					curCountry: current.country,
+					curDescription: current.description,
+					curDetours: current.detours,
+					curId: current.id
+				});
+			})
+			.catch((err) => {
+				console.error(err);
+				window.alert('Sorry, something went wrong');
+			});
+	}
+
+	changeMap(evt) {
+		console.log('App: changeMap');
+		if (evt.target.value) {
+			let selected = this.state.maps.filter((map) => {
+				return map.id === parseInt(evt.target.value, 10);
+			})[0];
+			console.log(selected);
+			this.setState({
+				curTitle: selected.title,
+				curCity: selected.city,
+				curCountry: selected.country,
+				curDescription: selected.description,
+				curDetours: selected.detours,
+				curId: selected.id
+			});
+		}
+	}
+
+	fetchMaps() {
+		console.log('App: fetchMaps');
+		axios.get('http://localhost:8000/maps').then((res) => {
+			this.setState({
+				maps: res.data
+			});
+		});
 	}
 
 	render() {
 		console.log('App: render');
+		let currentMap;
+		if (this.state.curTitle) {
+			currentMap = {
+				title: this.state.curTitle,
+				city: this.state.curCity,
+				country: this.state.curCountry,
+				description: this.state.curDescription,
+				detours: this.state.curDetours,
+				id: this.state.curId
+			};
+		} else {
+			currentMap = {
+				title: 'Please select or create a map',
+				city: '',
+				country: '',
+				description: '',
+				id: ''
+			};
+		}
+		let mapOptions = [];
+		if (this.state.maps) {
+			for (let i = 0; i < this.state.maps.length; i++) {
+				mapOptions.push(
+					<option key={this.state.maps[i].id} className="App-MapOption" value={this.state.maps[i].id}>
+						{this.state.maps[i].title} ({this.state.maps[i].city})
+					</option>
+				);
+			}
+		}
 		return (
 			<div className="App">
 				<aside className="App-Aside">
@@ -43,14 +132,15 @@ class App extends Component {
 						<Link className="App-NavLink" to="/new">
 							New Map
 						</Link>
-						<Link className="App-NavLink" to="/1/list">
+						<Link className="App-NavLink" to="/list">
 							List View
 						</Link>
-						<Link className="App-NavLink" to="/1/map">
+						<Link className="App-NavLink" to="/map">
 							Map View
 						</Link>
-						<select className="App-MapSelector">
+						<select className="App-MapSelector" onChange={this.changeMap}>
 							<option className="App-MapOption">Select a map</option>
+							{mapOptions}
 						</select>
 					</nav>
 					<button className="App-SignOut">Sign Out</button>
@@ -63,12 +153,17 @@ class App extends Component {
 							createMap={this.createMap}
 							{...this.state}
 						/>
-						<MapView path="/:collectionId/map" />
-						<ListView path="/:collectionId/list" />
+						<MapView path="/map" map={currentMap} />
+						<ListView path="/list" map={currentMap} />
 					</Router>
 				</main>
 			</div>
 		);
+	}
+
+	componentDidMount() {
+		console.log('App: componentDidMount');
+		this.fetchMaps();
 	}
 }
 

@@ -22,23 +22,24 @@ class NewMap extends Component {
 	}
 
 	render() {
+		console.log('NewMap: render');
 		return (
 			<div className="NewMap">
 				<div className="NewMap-Left">
 					<h2>
-						{this.props.title} - {this.props.city}, {this.props.country}
+						{this.props.newTitle} - {this.props.newCity}, {this.props.newCountry}
 					</h2>
-					<p>{this.props.description}</p>
+					<p>{this.props.newDescription}</p>
 					<form className="NewMap-Form" onSubmit={this.submitMap}>
 						<h3>New Map</h3>
 						<label>Map Title</label>
-						<input className="NewMap-FormField" type="text" name="title" onChange={this.detailMap} />
+						<input className="NewMap-FormField" type="text" name="newTitle" onChange={this.detailMap} />
 						<label>City</label>
-						<input className="NewMap-FormField" type="text" name="city" onChange={this.detailMap} />
+						<input className="NewMap-FormField" type="text" name="newCity" onChange={this.detailMap} />
 						<label>Country</label>
-						<input className="NewMap-FormField" type="text" name="country" onChange={this.detailMap} />
+						<input className="NewMap-FormField" type="text" name="newCountry" onChange={this.detailMap} />
 						<label>Description</label>
-						<textarea rows={5} name="description" onChange={this.detailMap} />
+						<textarea rows={5} name="newDescription" onChange={this.detailMap} />
 						<input className="NewMap-SubmitForm" type="submit" />
 					</form>
 				</div>
