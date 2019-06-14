@@ -41,15 +41,17 @@ class MapView extends Component {
 	}
 
 	componentDidMount() {
-		this.setState({
-			viewport: {
-				width: 400,
-				height: 400,
-				latitude: this.props.map.lat,
-				longitude: this.props.map.lng,
-				zoom: 8
-			}
-		});
+		if (this.props.map.lat) {
+			this.setState({
+				viewport: {
+					width: 400,
+					height: 400,
+					latitude: this.props.map.lat,
+					longitude: this.props.map.lng,
+					zoom: 8
+				}
+			});
+		}
 	}
 
 	componentDidUpdate() {

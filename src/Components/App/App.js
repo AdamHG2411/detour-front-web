@@ -80,6 +80,7 @@ class App extends Component {
 				)
 				.then((res) => {
 					coordinates = res.data.features[0].geometry.coordinates;
+					console.log(coordinates);
 					this.setState({
 						curTitle: selected.title,
 						curCity: selected.city,
@@ -110,8 +111,8 @@ class App extends Component {
 				title: this.state.curTitle,
 				city: this.state.curCity,
 				country: this.state.curCountry,
-				lat: this.state.curLatLng[0],
-				lng: this.state.curLatLng[1],
+				lat: this.state.curLatLng[1],
+				lng: this.state.curLatLng[0],
 				description: this.state.curDescription,
 				detours: this.state.curDetours,
 				id: this.state.curId
