@@ -4,6 +4,7 @@ import axios from 'axios';
 import NewMap from '../NewMap/NewMap.js';
 import MapView from '../MapView/MapView.js';
 import ListView from '../ListView/ListView.js';
+import AddDetour from '../AddDetour/AddDetour.js';
 import './App.css';
 
 const detourLogo = require('../../assets/Artboard 1.png');
@@ -163,6 +164,7 @@ class App extends Component {
 						/>
 						<MapView path="/map" map={currentMap} />
 						<ListView path="/list" map={currentMap} />
+						<AddDetour path="/new_detour" map={currentMap} />
 					</Router>
 				</main>
 			</div>

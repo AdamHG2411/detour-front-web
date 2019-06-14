@@ -1,4 +1,5 @@
 import React from 'react';
+import { navigate } from '@reach/router';
 import axios from 'axios';
 import './ListView.css';
 
@@ -25,12 +26,23 @@ function ListView(props) {
 				</h2>
 				<p>{props.map.description}</p>
 				<button>Share (coming soon)</button>
-				<button>New Detour</button>
+				<button
+					onClick={(evt) => {
+						evt.preventDefault();
+						navigate('/new_detour');
+					}}
+				>
+					New Detour
+				</button>
 				<div>{listItems}</div>
 			</div>
 		);
 	} else {
-		return <h2>Please select a map</h2>;
+		return (
+			<div className="ListView">
+				<h2>Please select a map</h2>
+			</div>
+		);
 	}
 }
 
