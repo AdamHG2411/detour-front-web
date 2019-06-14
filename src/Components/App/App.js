@@ -50,15 +50,6 @@ class App extends Component {
 			})
 			.then((res) => {
 				console.log(res);
-				// 	let current = res.data;
-				// 	this.setState({
-				// 		curTitle: current.title,
-				// 		curCity: current.city,
-				// 		curCountry: current.country,
-				// 		curDescription: current.description,
-				// 		curDetours: current.detours,
-				// 		curId: current.id
-				// 	});
 			})
 			.catch((err) => {
 				console.error(err);
@@ -72,7 +63,6 @@ class App extends Component {
 			let selected = this.state.maps.filter((map) => {
 				return map.id === parseInt(evt.target.value, 10);
 			})[0];
-			console.log(selected);
 			let coordinates;
 			axios
 				.get(
@@ -81,14 +71,19 @@ class App extends Component {
 				.then((res) => {
 					coordinates = res.data.features[0].geometry.coordinates;
 					console.log(coordinates);
-					this.setState({
-						curTitle: selected.title,
-						curCity: selected.city,
-						curCountry: selected.country,
-						curDescription: selected.description,
-						curDetours: selected.detours,
-						curId: selected.id,
-						curLatLng: coordinates
+					axios.get('http://localhost:8000/detours').then((allDetours) => {
+						let selectDetours = allDetours.data.filter((thisDetour) => {
+							return thisDetour.map === `http://localhost:8000/maps/${selected.id}`;
+						});
+						this.setState({
+							curTitle: selected.title,
+							curCity: selected.city,
+							curCountry: selected.country,
+							curDescription: selected.description,
+							curDetours: selectDetours,
+							curId: selected.id,
+							curLatLng: coordinates
+						});
 					});
 				});
 		}

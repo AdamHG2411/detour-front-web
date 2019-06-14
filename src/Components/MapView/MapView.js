@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactMapGL from 'react-map-gl';
+import ReactMapGL, { Marker } from 'react-map-gl';
 import './MapView.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -13,58 +13,71 @@ class MapView extends Component {
 				latitude: 37.7577,
 				longitude: -122.4376,
 				zoom: 8
-			}
+			},
+			selectedCity: ''
 		};
 	}
 
 	render() {
 		console.log('MapView: render');
-		//Note: Access token will change in deployed build
+		let cityMap = <h2>Please select a map</h2>;
+		if (this.props.map.city) {
+			let detourMarkers = this.props.map.detours.map((thisDetour) => {
+				return (
+					<Marker key={thisDetour.id} latitude={thisDetour.lat} longitude={thisDetour.lng}>
+						{thisDetour.name}
+					</Marker>
+				);
+			});
+			cityMap = (
+				<ReactMapGL
+					{...this.state.viewport}
+					onViewportChange={(viewport) => this.setState({ viewport })}
+					mapboxApiAccessToken="pk.eyJ1IjoiYWRhbWhnMjQxMSIsImEiOiJjand1c2g4eGQwYmw4NDNuMXEzbGU0ZWVjIn0.cEA146rX1jg_LqwNAwVrdg"
+					mapStyle="mapbox://styles/mapbox/satellite-streets-v10"
+				>
+					{detourMarkers}
+				</ReactMapGL>
+			);
+		}
 		return (
 			<div className="MapView">
 				<h2>
-					{this.props.title} - {this.props.city}, {this.props.country}
+					{this.props.map.title} - {this.props.map.city}, {this.props.map.country}
 				</h2>
-				<p>{this.props.description}</p>
+				<p>{this.props.map.description}</p>
 				<button>Share (coming soon)</button>
 				<button>New Detour</button>
-				<div className="MapView-MapContainer">
-					<ReactMapGL
-						{...this.state.viewport}
-						onViewportChange={(viewport) => this.setState({ viewport })}
-						mapboxApiAccessToken="pk.eyJ1IjoiYWRhbWhnMjQxMSIsImEiOiJjand1c2g4eGQwYmw4NDNuMXEzbGU0ZWVjIn0.cEA146rX1jg_LqwNAwVrdg"
-						mapStyle="mapbox://styles/mapbox/satellite-streets-v10"
-					/>
-				</div>
+				<div className="MapView-MapContainer">{cityMap}</div>
 			</div>
 		);
 	}
 
 	componentDidMount() {
-		if (this.props.map.lat) {
-			this.setState({
+		if (this.props.map.city && this.state.selectedCity !== this.props.map.city) {
+			this.setState((prevState) => ({
 				viewport: {
-					width: 400,
-					height: 400,
+					...prevState.viewport,
 					latitude: this.props.map.lat,
 					longitude: this.props.map.lng,
 					zoom: 8
-				}
-			});
+				},
+				selectedCity: this.props.map.city
+			}));
 		}
 	}
 
 	componentDidUpdate() {
-		if (this.state.viewport.latitude !== this.props.map.lat) {
-			this.setState({
+		if (this.props.map.city && this.state.selectedCity !== this.props.map.city) {
+			this.setState((prevState) => ({
 				viewport: {
-					width: 400,
-					height: 400,
+					...prevState.viewport,
 					latitude: this.props.map.lat,
 					longitude: this.props.map.lng,
 					zoom: 8
-				}
-			});
+				},
+				selectedCity: this.props.map.city
+			}));
 		}
 	}
 }
