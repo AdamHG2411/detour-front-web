@@ -1,70 +1,82 @@
-I'm building this application in a week as the final project for General Assembly's Software Engineering Immersive. My focus this week is on building a high-quality functional app, but I fully intend to add thorough documentation soon.
+# Detour
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+With Detour, users can generate maps of their favorite cities and plot all the points that matter to them. Some possible use cases include:
+* Keeping track of the things you've seen on your travels
+* Building maps to guide friends and family to the best destinations in your favorite cities
 
-## Available Scripts
+This is my final project for General Assembly's Software Engineering Immersive program. It's mostly functional, but it still needs some debugging and final styling that I intend to include in the next few days.
 
-In the project directory, you can run:
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To set up Detour on your local system for development/testing:
+* Clone the [back-end repo](https://www.github.com/adamhg2411/detour-back)
+* install dependencies (I use pipenv install but you may have a different setup for virtual environments)
+* Enter your shell
+* Set up your database in PostgreSQL
+* python manage.py makemigrations
+* python manage.py migrate
+* python manage.py runserver
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+* Clone this repo to another folder
+* npm install
+* npm start
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
 
-### `npm run build`
+Python 3.7.3
+npm
+create-react-app
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Deployment
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This project is not yet deployed but it will be deployed with Heroku on the back end and Surge or GitHub Pages on the front end. This readme will be updated with links to the deployed version and instructions for deploying when the project is deployed.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Built With
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Back end**
+* [Python](https://www.python.org/)
+* [Django](https://www.djangoproject.com/)
+* [Django Rest Framework](https://www.django-rest-framework.org/)
+* [PostgreSQL](https://www.postgresql.org/)
+* [Heroku](https://www.heroku.com) (pending deployment)
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+**Front end**
+* HTML
+* CSS
+* JavaScript
+* [React](https://reactjs.org/)
+* [create-react-app](https://github.com/facebook/create-react-app)
+* [@reach/router](https://reach.tech/router)
+* [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/api/)
+* [react-map-gl](https://uber.github.io/react-map-gl/#/Documentation/introduction/introduction)
+* [OpenCage Geocoder API](https://opencagedata.com/)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Contributing
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**Front**
+[Issues](https://github.com/AdamHG2411/detour-back/issues)
+[Pull Requests](https://github.com/AdamHG2411/detour-back/pulls)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Back**
+[Issues](https://github.com/AdamHG2411/detour-front-web/issues)
+[Pull Requests](https://github.com/AdamHG2411/detour-front-web/pulls)
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Author
 
-### Analyzing the Bundle Size
+* **Adam Grider** - [Website](https://www.adamgrider.dev) - [LinkedIn](https://www.linkedin.com/in/adam-h-grider)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-### Making a Progressive Web App
+## License
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-### Advanced Configuration
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+## Acknowledgments
 
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Many thanks to the developers of any languages, frameworks, libraries, etc on which this app depends.
