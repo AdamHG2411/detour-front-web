@@ -3,6 +3,11 @@ import { navigate } from '@reach/router';
 import axios from 'axios';
 import './ListView.css';
 
+function deleteDetour(evt) {
+	axios.delete(`http://localhost:8000/detours/${evt.target.name}`);
+	navigate('/list');
+}
+
 function ListItem(props) {
 	return (
 		<div key={props.id} className="ListView-ListItem">
@@ -11,7 +16,9 @@ function ListItem(props) {
 				{props.lat}, {props.lng}
 			</p>
 			<p>{props.notes}</p>
-			<button onClick={axios.delete(`http://localhost:8000/detours/${props.id}`)}>Delete</button>
+			<button name={props.id} onClick={deleteDetour}>
+				Delete
+			</button>
 		</div>
 	);
 }

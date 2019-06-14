@@ -24,7 +24,12 @@ class MapView extends Component {
 		if (this.props.map.city) {
 			let detourMarkers = this.props.map.detours.map((thisDetour) => {
 				return (
-					<Marker key={thisDetour.id} latitude={thisDetour.lat} longitude={thisDetour.lng}>
+					<Marker
+						className="MapView-Marker"
+						key={thisDetour.id}
+						latitude={thisDetour.lat}
+						longitude={thisDetour.lng}
+					>
 						{thisDetour.name}
 					</Marker>
 				);

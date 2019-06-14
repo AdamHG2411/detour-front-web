@@ -1,4 +1,63 @@
 .AddDetour {
 	background-color: #4eb0a6;
 	height: 100vh;
+	color: #d3e8e6;
+}
+
+.AddDetour h2 {
+	padding-top: 20px;
+	margin-bottom: 20px;
+}
+
+.AddDetour > * {
+	margin-left: 20px;
+}
+
+.AddDetour-Form {
+	display: flex;
+	flex-direction: column;
+	margin: 50px auto;
+	background-color: #91c5c0;
+	padding: 2em;
+	border-radius: 20px;
+	border: 3px solid #2c9a8e;
+	color: #096e64;
+	box-shadow: 3px 3px 2px #2f988d;
+	width: 50%;
+	min-width: 300px;
+}
+
+.AddDetour-Form label {
+	margin: 10px auto 5px 0;
+}
+
+.AddDetour-FormField {
+	width: 300px;
+	border: none;
+	background-color: #d3e8e6;
+	height: 2em;
+	border-radius: 20px;
+	padding: 0 .5em;
+}
+
+.AddDetour-Form textarea {
+	width: 300px;
+	border: none;
+	background-color: #d3e8e6;
+	padding: 0 .5em;
+	border-radius: 10px;
+	resize: none;
+}
+
+.AddDetour-SubmitForm {
+	margin: 20px 0 0 auto;
+	background-color: #f5934b;
+	color: black;
+	padding: .2em 1em;
+	border-radius: 20px;
+	font-size: 1.2em;
+	font-weight: 800;
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana,
+		sans-serif;
+	box-shadow: 3px 3px 2px #4eafa6;
 }

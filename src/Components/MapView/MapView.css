@@ -1,4 +1,18 @@
 .MapView {
 	background-color: #4eb0a6;
 	height: 100vh;
+	color: #d3e8e6;
+}
+
+.MapView h2 {
+	padding-top: 20px;
+	margin-bottom: 20px;
+}
+
+.MapView > * {
+	margin-left: 20px;
+}
+
+.MapView-Marker {
+	background-color: #4eb0a6;
 }

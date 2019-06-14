@@ -1,4 +1,14 @@
 .ListView {
 	background-color: #4eb0a6;
 	height: 100vh;
+	color: #d3e8e6;
+}
+
+.ListView h2 {
+	padding-top: 20px;
+	margin-bottom: 20px;
+}
+
+.ListView > * {
+	margin-left: 20px;
 }

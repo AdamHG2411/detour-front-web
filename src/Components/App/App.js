@@ -12,7 +12,6 @@ const detourLogo = require('../../assets/Artboard 1.png');
 class App extends Component {
 	constructor(props) {
 		super(props);
-		console.log(this.props);
 		this.state = {
 			newTitle: 'Map Title',
 			newCity: 'City',
@@ -34,7 +33,6 @@ class App extends Component {
 	}
 
 	handleChange(obj) {
-		console.log('App: handleChange');
 		this.setState({
 			[obj.name]: obj.value
 		});
@@ -71,7 +69,6 @@ class App extends Component {
 				)
 				.then((res) => {
 					coordinates = res.data.features[0].geometry.coordinates;
-					console.log(coordinates);
 					axios.get('http://localhost:8000/detours').then((allDetours) => {
 						let selectDetours = allDetours.data.filter((thisDetour) => {
 							return thisDetour.map === `http://localhost:8000/maps/${selected.id}`;
