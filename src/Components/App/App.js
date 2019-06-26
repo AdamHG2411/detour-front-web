@@ -68,6 +68,7 @@ class App extends Component {
 					`https://api.opencagedata.com/geocode/v1/geojson?q=${selected.city}%2C%20${selected.country}&key=1670b9f4cb2a4fc8944aa2118ded097a&language=en&pretty=1`
 				)
 				.then((res) => {
+					console.log(res);
 					coordinates = res.data.features[0].geometry.coordinates;
 					axios.get('http://localhost:8000/detours').then((allDetours) => {
 						let selectDetours = allDetours.data.filter((thisDetour) => {

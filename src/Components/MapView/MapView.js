@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactMapGL, { Marker } from 'react-map-gl';
+import { navigate } from '@reach/router';
 import './MapView.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -52,7 +53,14 @@ class MapView extends Component {
 				</h2>
 				<p>{this.props.map.description}</p>
 				<button>Share (coming soon)</button>
-				<button>New Detour</button>
+				<button
+					onClick={(evt) => {
+						evt.preventDefault();
+						navigate('/new_detour');
+					}}
+				>
+					New Detour
+				</button>
 				<div className="MapView-MapContainer">{cityMap}</div>
 			</div>
 		);
