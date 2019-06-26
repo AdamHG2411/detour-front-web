@@ -4,6 +4,37 @@
 	color: #d3e8e6;
 }
 
+.MapView-Header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.MapView-HeaderInfo {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+.MapView-HeaderButtons {
+	margin: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+.MapView-HeaderButtons button {
+	background-color: #f5934b;
+	color: black;
+	padding: .2em 1em;
+	margin-bottom: 5px;
+	font-size: 1.2em;
+	font-weight: 800;
+	font-family: 'Lucida Sans';
+	border-radius: 20px;
+	box-shadow: 3px 3px 2px #096e64;
+}
+
 .MapView h2 {
 	padding-top: 20px;
 	margin-bottom: 20px;
@@ -11,6 +42,10 @@
 
 .MapView > * {
 	margin-left: 20px;
+}
+
+.MapView-MapContainer {
+	margin: 50px 20px;
 }
 
 .MapView-Marker {

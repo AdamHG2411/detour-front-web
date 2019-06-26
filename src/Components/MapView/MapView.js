@@ -9,11 +9,11 @@ class MapView extends Component {
 		super(props);
 		this.state = {
 			viewport: {
-				width: 400,
+				width: 900,
 				height: 400,
 				latitude: 37.7577,
 				longitude: -122.4376,
-				zoom: 8
+				zoom: 11
 			},
 			selectedCity: ''
 		};
@@ -48,19 +48,27 @@ class MapView extends Component {
 		}
 		return (
 			<div className="MapView">
-				<h2>
-					{this.props.map.title} - {this.props.map.city}, {this.props.map.country}
-				</h2>
-				<p>{this.props.map.description}</p>
-				<button>Share (coming soon)</button>
-				<button
-					onClick={(evt) => {
-						evt.preventDefault();
-						navigate('/new_detour');
-					}}
-				>
-					New Detour
-				</button>
+				<div className="MapView-Header">
+					<div className="MapView-HeaderInfo">
+						<h2>
+							{this.props.map.title} - {this.props.map.city}, {this.props.map.country}
+						</h2>
+						<p>{this.props.map.description}</p>
+					</div>
+
+					<div className="MapView-HeaderButtons">
+						<button>Share (coming soon)</button>
+						<button
+							onClick={(evt) => {
+								evt.preventDefault();
+								navigate('/new_detour');
+							}}
+						>
+							New Detour
+						</button>
+					</div>
+				</div>
+
 				<div className="MapView-MapContainer">{cityMap}</div>
 			</div>
 		);
@@ -73,7 +81,7 @@ class MapView extends Component {
 					...prevState.viewport,
 					latitude: this.props.map.lat,
 					longitude: this.props.map.lng,
-					zoom: 8
+					zoom: 11
 				},
 				selectedCity: this.props.map.city
 			}));
@@ -87,7 +95,7 @@ class MapView extends Component {
 					...prevState.viewport,
 					latitude: this.props.map.lat,
 					longitude: this.props.map.lng,
-					zoom: 8
+					zoom: 11
 				},
 				selectedCity: this.props.map.city
 			}));
